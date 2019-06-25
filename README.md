@@ -22,7 +22,7 @@
 <b><h5>Create</h5></b>
 <p>Pass the form data, url for creation and the id of the create modal to the create() function</p>
 <p>If the above configuration has been setup properly the function call is all that is needed</p>
-<b>The function</b>
+<b><p>The function</p></b>
 
 ```javascript
 function create(data, url, modal){
@@ -43,7 +43,7 @@ function create(data, url, modal){
   })
 }
 ```
-<b>Usage</b>
+<b><p>Usage</p></b>
 
 ```javascript
 var formData = $('.add_post').serialize()
@@ -56,7 +56,7 @@ var formData = $('.add_post').serialize()
 <b><h5>Edit</h5></b>
 <p>Pass the form data, url for getting the required data and the id of the edit modal to the edit() function</p>
 <p>This should open your edit modal</p>
-<b>The function</b>
+<b><p>The function</p></b>
 
 ```javascript
 function edit(id, url, modal){
@@ -71,7 +71,7 @@ function edit(id, url, modal){
 }
 ```
 
-<b>Usage</b>
+<b><p>Usage</p></b>
 
 ```javascript
 var id = $(this).data('id')
@@ -84,7 +84,7 @@ var id = $(this).data('id')
 <b><h5>Update</h5></b>
 <p>Pass the form data, url for updating and the id of the edit modal to the update() function</p>
 <p>This function will clear(input fields) and close the modal</p>
-<b>The function</b>
+<b><p>The function</p></b>
 
 ```javascript
 function update(data, url, modal){
@@ -106,7 +106,7 @@ function update(data, url, modal){
 }
 ```
 
-<b>Usage:</b>
+<b><p>Usage:</p></b>
 
 ```javascript
 var formData = $('.edit_post').serialize()
@@ -118,7 +118,7 @@ var formData = $('.edit_post').serialize()
 <br>
 <b><h5>Delete</h5></b>
 <p>Pass the url for deleting and the id of the resource you want to delete to the delete() function</p>
-<b>The function</b>
+<b><p>The function</p></b>
 
 ```javascript
 function deleteRes(id, url){
