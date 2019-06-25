@@ -22,14 +22,146 @@
 <b><h5>Create</h5></b>
 <p>Pass the form data, url for creation and the id of the create modal to the create() function</p>
 <p>If the above configuration has been setup properly the function call is all that is needed</p>
+<b>The function</b>
+
+```javascript
+function create(data, url, modal){
+  $.ajax({
+    url: url,
+    type: 'POST',
+    data: data,
+    success: function(data){
+      if(data.msg){
+        swal({
+          text: data.msg,
+          icon: 'success'
+        })
+        $('#'+modal+'').modal('hide')
+        clearModal()
+      }
+    }
+  })
+}
+```
+<b>Usage</b>
+
+```javascript
+var formData = $('.add_post').serialize()
+    var url = '{{url('add-post')}}'
+    var modal = 'addPostModal'
+    create(formData, url, modal)
+```
+
+<br>
 <b><h5>Edit</h5></b>
 <p>Pass the form data, url for getting the required data and the id of the edit modal to the edit() function</p>
 <p>This should open your edit modal</p>
+<b>The function</b>
+
+```javascript
+function edit(id, url, modal){
+  $.ajax({
+    url: url,
+    type: 'GET',
+    success: function(data){
+      setModal(data)
+      $('#'+modal+'').modal('show')
+    }
+  })
+}
+```
+
+<b>Usage</b>
+
+```javascript
+var id = $(this).data('id')
+      var url = '{{url('edit-post')}}/'+id
+      var modal = 'editPostModal'
+      edit(id, url, modal)
+```
+
+<br>
 <b><h5>Update</h5></b>
 <p>Pass the form data, url for updating and the id of the edit modal to the update() function</p>
 <p>This function will clear(input fields) and close the modal</p>
+<b>The function</b>
+
+```javascript
+function update(data, url, modal){
+  $.ajax({
+    url: url,
+    type: 'POST',
+    data: data,
+    success: function(data){
+      if(data.msg){
+        swal({
+          text: data.msg,
+          icon: 'success'
+        })
+        $('#'+modal+'').modal('hide')
+        clearModal()
+      }
+    }
+  })
+}
+```
+
+<b>Usage:</b>
+
+```javascript
+var formData = $('.edit_post').serialize()
+      var url = '{{url('update-post')}}'
+      var modal = 'editPostModal'
+      update(formData, url, modal)
+```
+
+<br>
 <b><h5>Delete</h5></b>
 <p>Pass the url for deleting and the id of the resource you want to delete to the delete() function</p>
+<b>The function</b>
+
+```javascript
+function deleteRes(id, url){
+  swal({
+  title: "Are you sure?",
+  text: "Sure you want to delete this?",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      $.ajax({
+        url: url,
+        type: 'DELETE',
+        headers:
+        {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(data){
+          if(data.msg){
+            swal({
+              text: data.msg,
+              icon: 'success'
+            })
+          }
+        }
+      })
+    } else {
+    }
+  });
+
+}
+```
+
+<b>Usage:</b>
+
+```javascript
+var id = $(this).data('id')
+      var url = '{{url('delete-post')}}/'+id
+      deleteRes(id, url)
+```
+<br>
 <br><br>
 <b><h4>To Do</h4></b>
 <hr>
